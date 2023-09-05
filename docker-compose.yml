@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      # args:
+      #   user: ${DOCKER_USER}
+      #   group:  ${DOCKER_USER_GROUP}
+      #   uid: ${DOCKER_USER_UID}
+      context: .
+      dockerfile: docker/dockerfile
+    ports:
+      - 80:80
+    image: apache-midia
+    container_name: apache
+    working_dir: /usr/local/apache2/htdocs
+    volumes:
+      - ./:/usr/local/apache2/htdocs/
+      

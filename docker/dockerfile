@@ -1,0 +1,21 @@
+FROM httpd:2.4-bullseye
+
+# Arguments defined in docker-compose.yml
+# ARG user
+# ARG group
+# ARG uid
+
+# WORKDIR /var/www/html
+
+RUN apt update && \
+    apt install -y \
+    certbot \
+    curl 
+
+# RUN ln -s /snap/bin/certbot /usr/bin/certbot
+
+# RUN addgroup -g $uid $group && adduser -S $user -G $group
+# RUN chown -R $user:$group /var/www/html
+
+# USER $user 
+
