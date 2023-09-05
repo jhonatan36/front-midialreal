@@ -16,4 +16,27 @@ services:
     working_dir: /usr/local/apache2/htdocs
     volumes:
       - ./:/usr/local/apache2/htdocs/
-      
+    depends_on:
+      - https-portal
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      DOMAINS: '35.199.29.112'
+      # STAGE: 'production' # Don't use production until staging works
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+    restart: always
+    networks:
+      - rede-interna
+
+networks:
+  rede-interna:
+      driver: bridge
+
+volumes:
+  https-portal-data:
+    driver: local
